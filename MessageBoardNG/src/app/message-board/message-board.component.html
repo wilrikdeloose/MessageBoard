@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let m of messageBoardService.getAll()">
+            <app-message-card [message]=m></app-message-card>
+        </div>
+    </div>
+</div>
+
+<button
+    type="button"
+    class="btn btn-outline-success btn-add"
+    routerLink="/message/edit/0">+</button>
