@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { MessageCardComponent } from './message-card/message-card.component';
@@ -14,8 +15,8 @@ import { MessageBoardService } from './message-board/message-board.service';
 
 const routes: Routes = [
   { path: '', component: MessageBoardComponent },
-  { path: 'message/:id', component: MessageComponent },
-  { path: 'message/edit/:id', component: MessageEditComponent }
+  { path: 'messages/:id', component: MessageComponent },
+  { path: 'messages/edit/:id', component: MessageEditComponent }
 ];
 
 @NgModule({
@@ -31,7 +32,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [MessageBoardService],
   bootstrap: [AppComponent]

@@ -14,7 +14,10 @@ export class MessageEditComponent {
   constructor(private messageBoardService: MessageBoardService, private router: Router) { }
 
   addMessage() {
-    const message = this.messageBoardService.add(this.title, this.content)
-    this.router.navigate(['/message/' + message.id]);
+    this.messageBoardService
+      .add(this.title, this.content)
+      .subscribe(message =>
+        this.router.navigate(['/messages/' + message.id])
+      )
   }
 }

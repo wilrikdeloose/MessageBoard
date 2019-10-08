@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MessageBoardService } from './message-board.service';
+import { Message } from '../message/message.model';
 
 @Component({
   selector: 'app-message-board',
@@ -8,6 +9,13 @@ import { MessageBoardService } from './message-board.service';
 })
 export class MessageBoardComponent {
 
+  messages: Message[]
+
   constructor (private messageBoardService: MessageBoardService) { }
+
+  ngOnInit() {
+    this.messageBoardService.getAll()
+      .subscribe(messages => this.messages = messages);
+  }
 
 }

@@ -16,6 +16,6 @@ export class MessageComponent {
     private location: Location,
     private messageService: MessageBoardService) {
       const id = Number(this.route.snapshot.paramMap.get('id'))
-      this.message = this.messageService.getById(id)
+      this.messageService.getById(id).subscribe(message => this.message = message)
   }
 }

@@ -1,8 +1,10 @@
 {
-    "scripts": {
-      "start": "node app.js"
-    },
-    "dependencies": {
-      "express": "4.16.4"
-    }
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "4.16.4",
+    "faker": "^4.1.0"
+  }
 }

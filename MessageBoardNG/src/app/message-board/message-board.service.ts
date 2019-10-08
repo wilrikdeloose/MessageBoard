@@ -1,43 +1,23 @@
 import { Message } from '../message/message.model'
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class MessageBoardService {
-    private messages: Message[] = []
     private apiUrl: string = 'http://localhost:3000'
     
-    constructor(private http: HttpClient) {
-        // this.add('Test 1', 'Test test test test...')
-        // this.add('Test 2', 'Test test test test...')
-        // this.add('Test 3', 'Test test test test...')
-        // this.add('Test 4', 'Test test test test...')
-        // this.add('Test 5', 'Test test test test...')
-        // this.add('Test 6', 'Test test test test...')
-    }
+    constructor(private http: HttpClient) { }
 
-    add(title: string, content: string) {
-        const id = this.messages.length
-        const imgUrl = 'https://picsum.photos/id/' + id + '/640/640'
-        const message = new Message(id, title, content, imgUrl) 
-        
-        //this.messages.push(message)
-        this.http.post(this.apiUrl + '/messages', message)
-        
-        return message
+    add(title: string, content: string): Observable<Message> {
+        return this.http.post<Message>(this.apiUrl + '/messages', { "title": title, "content": content} )
     }
     
-    getAll() {
-        //return this.messages.slice()
-        return this.http.get(this.apiUrl + '/messages')
+    getAll(): Observable<Message[]> {
+        return this.http.get<Message[]>(this.apiUrl + '/messages')
     }
 
-    getById(id: number) {
-        // for (let m of this.messages) {
-        //     if (m.id == id) {
-        //         return m
-        //     }
-        // }
-        // return null
-        
-        return this.http.get(this.apiUrl + '/messages/' + id)
+    getById(id: number): Observable<Message> {
+        return this.http.get<Message>(this.apiUrl + '/messages/' + id)
     }
 }
